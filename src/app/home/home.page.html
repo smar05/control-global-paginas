@@ -1,0 +1,56 @@
+<ion-content [fullscreen]="true" color="medium">
+
+  <ion-fab horizontal="center" vertical="center" slot="fixed">
+    <ion-fab-button color="primary" routerLink="/clientes">
+      <ion-icon name="albums-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-row style="height: 49%;">
+    <ion-col size="6" style="height: 100%;width: 90%;">
+      <ion-card style="height: 100%;width: 90%;" (click)="cuenta()">
+        <ion-row style="height: 70%;">
+          <img class="icon" src="../../assets/imagenes/users.svg">
+        </ion-row>
+        <ion-row style="height: 30%;">
+          <ion-title class="titulo"><b>Mi cuenta</b></ion-title>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6" style="height: 100%;width: 90%;">
+      <ion-card style="height: 100%;width: 90%;" (click)="productos()">
+        <ion-row style="height: 70%;">
+          <img class="icon" src="../../assets/imagenes/productos.svg">
+        </ion-row>
+        <ion-row style="height: 30%;">
+          <ion-title class="titulo"><b>Productos</b></ion-title>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row style="height: 49%;">
+    <ion-col size="6" style="height: 100%;width: 90%;">
+      <ion-card style="height: 100%;width: 90%;" (click)="pedidos()">
+        <ion-row style="height: 70%;">
+          <img class="icon" src="../../assets/imagenes/pedidos.svg">
+        </ion-row>
+        <ion-row style="height: 30%;">
+          <ion-title class="titulo"><b>Pedidos</b></ion-title>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6" style="height: 100%;width: 90%;">
+      <ion-card style="height: 100%;width: 90%;" (click)="pagina()">
+        <ion-row style="height: 70%;">
+          <img class="icon" src="../../assets/imagenes/pagina.svg">
+        </ion-row>
+        <ion-row style="height: 30%;">
+          <ion-title class="titulo"><b>Pagina</b></ion-title>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

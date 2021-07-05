@@ -1,0 +1,182 @@
+<ion-toolbar color="dark">
+  <ion-buttons slot="start">
+    <ion-button (click)="back()">
+      <ion-icon name="caret-back-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title *ngIf="id==0">Crear producto</ion-title>
+  <ion-title *ngIf="id!=0">Editar producto</ion-title>
+</ion-toolbar>
+
+<ion-content color="medium">
+
+  <ng-container *ngIf="loading == true">
+    <img src="../../assets/imagenes/loading.gif" class="icon2" style="border-radius: 50%;">
+  </ng-container>
+
+  <ng-container *ngIf="loading == false">
+    <ion-fab horizontal="end" vertical="top" slot="fixed" (click)="destacado()">
+      <ion-fab-button color="danger" *ngIf="producto.destacado == false">
+        <ion-icon name="star-outline"></ion-icon>
+      </ion-fab-button>
+  
+      <ion-fab-button color="success" *ngIf="producto.destacado == true">
+        <ion-icon name="star"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <b>Producto id: </b> {{producto.id}}
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="producto.nombre"></ion-input>
+      </ion-item>
+    </ion-card>
+  
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Referencia</ion-label>
+        <ion-input [(ngModel)]="producto.ref"></ion-input>
+      </ion-item>
+    </ion-card>
+  
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-textarea [(ngModel)]="producto.descripcion"></ion-textarea>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label>Variantes</ion-label>
+        <ion-checkbox [(ngModel)]="producto.variantes" color="primary"></ion-checkbox>
+      </ion-item>
+    </ion-card>
+
+    <ng-container *ngIf="producto.variantes">
+      <ng-container>
+        <ion-card *ngIf="producto.variantesOp != null">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-row>
+                <ion-col size="10">
+                  <ion-item>
+                    <ion-label position="floating">Variante</ion-label>
+                    <ion-input type="text" [(ngModel)]="producto.variantesOp"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2" color="danger">
+                  <ion-fab-button color="danger" (click)="deleteVariante()">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </ion-fab-button>
+                </ion-col>
+              </ion-row>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ng-container *ngFor="let subVariante of subVariantes;let j=index">
+              <ion-row *ngIf="subVariante.mostrar">
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label position="floating">Subvariante</ion-label>
+                    <ion-input type="text" [(ngModel)]="subVariante.nombre"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-item>
+                    <ion-label position="floating">Precio</ion-label>
+                    <ion-input type="number" [(ngModel)]="subVariante.precio"></ion-input>
+                  </ion-item>
+                </ion-col>
+                <ion-col size="2" color="warning">
+                  <ion-fab-button color="warning" (click)="deleteSubVariante(j)">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </ion-fab-button>
+                </ion-col>
+              </ion-row>
+            </ng-container>            
+            <ion-button expand="full" (click)="agregarSubVariante()" color="warning">
+              <b>Agregar subvariante</b>
+            </ion-button>      
+          </ion-card-content>
+        </ion-card>        
+      </ng-container>                  
+      <ion-button expand="full" (click)="agregarVariante()" *ngIf="producto.variantesOp==null">
+        <b>Agregar variante</b>
+      </ion-button>
+    </ng-container>
+  
+    <ion-card *ngIf="!producto.variantes">
+      <ion-item>
+        <ion-label position="floating">Precio</ion-label>
+        <ion-input type="number" [(ngModel)]="producto.precio"></ion-input>
+      </ion-item>
+    </ion-card>
+  
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="4">
+            <b>Disponible:</b>
+          </ion-col>
+          <ion-col size="8">
+            <ion-button expand="full" shape="round" color="success" (click)="disponible()" *ngIf="producto.disponible == true"></ion-button>
+            <ion-button expand="full" shape="round" color="danger" (click)="disponible()" *ngIf="producto.disponible == false"></ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card>
+      <ion-item>
+        <ion-label>Categoria</ion-label>
+        <ion-select placeholder="Select One" [(ngModel)]="producto.categoria">
+          <ion-select-option *ngFor="let categoria of categoriasOrganizar()" [value]="categoria.id">
+            {{categoria.nombre}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+  
+    <ion-row>
+      <ion-col size="6">
+        <ion-card (click)="galeria(0)">
+          <img [src]="producto.imagen1" *ngIf="producto.imagen1" class="icon">
+          <img src="../../assets/imagenes/plus.svg" *ngIf="!producto.imagen1" class="icon">
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card (click)="galeria(1)">
+          <img [src]="producto.imagen2" *ngIf="producto.imagen2" class="icon">
+          <img src="../../assets/imagenes/plus.svg" *ngIf="!producto.imagen2" class="icon">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card (click)="galeria(2)">
+          <img [src]="producto.imagen3" *ngIf="producto.imagen3" class="icon">
+          <img src="../../assets/imagenes/plus.svg" *ngIf="!producto.imagen3" class="icon">
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card (click)="galeria(3)">
+          <img [src]="producto.imagen4" *ngIf="producto.imagen4" class="icon">
+          <img src="../../assets/imagenes/plus.svg" *ngIf="!producto.imagen4" class="icon">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  
+    <ion-button expand="full" (click)="guardar()">Guardar</ion-button>
+    <ion-button expand="full" (click)="borrar()" color="danger" *ngIf="id!=0">Borrar</ion-button>
+  </ng-container>
+
+</ion-content>

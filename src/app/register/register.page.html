@@ -1,0 +1,79 @@
+<ion-toolbar color="secondary">
+  <ion-buttons slot="start">
+    <ion-button (click)="back()">
+      <ion-icon name="caret-back-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Crear cuenta</ion-title>
+</ion-toolbar>
+
+<ion-content>
+
+  <div class="bordes">
+    <br>
+    <br>
+
+    <img class="icon" src="../../assets/imagenes/users.svg">
+
+    <br>
+    <br>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Correo Electronico</ion-label>
+        <ion-input [(ngModel)]="usuario.email"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-row>
+        <ion-col size="11">
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input [(ngModel)]="password" *ngIf="verPassword==false"></ion-input>
+            <ion-input type="password" [(ngModel)]="password" *ngIf="verPassword==true"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon (click)="ver()" *ngIf="verPassword==false" style="height: 100%;width: 100%;" name="eye-outline">
+          </ion-icon>
+          <ion-icon (click)="ver()" *ngIf="verPassword==true" style="height: 100%;width: 100%;" name="eye-off-outline">
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="usuario.apellido"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Cedula</ion-label>
+        <ion-input type="number" [(ngModel)]="usuario.cedula"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Celular</ion-label>
+        <ion-input type="number" [(ngModel)]="usuario.celular"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <br>
+
+    <ion-button color="secondary" expand="full" (click)="register()">Crear usuario</ion-button>
+  </div>
+
+</ion-content>

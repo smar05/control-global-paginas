@@ -1,0 +1,42 @@
+<ion-toolbar color="dark">
+  <ion-buttons slot="start">
+    <ion-button (click)="back()">
+      <ion-icon name="caret-back-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Clientes</ion-title>
+</ion-toolbar>
+
+<ion-content color="medium">
+
+  <ng-container *ngIf="loading == true">
+    <img src="../../assets/imagenes/loading.gif" class="icon">
+  </ng-container>
+
+  <ng-container *ngIf="loading == false">
+    <ion-card shape="round" *ngFor="let cliente of clientesOrganizar();let i=index" (click)="mostrar(cliente.datos.whatsapp)">
+      <ion-card-header>
+        <ion-card-title><b>{{i+1}}.{{cliente.datos.nombre}}</b></ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-row>
+          <ion-col size="4">
+            <b>Whatsapp:</b>
+          </ion-col>
+          <ion-col size="8">
+            {{cliente.datos.whatsapp}}
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="cliente.datos.correo">
+          <ion-col size="4">
+            <b>Correo:</b>
+          </ion-col>
+          <ion-col size="8">
+            {{cliente.datos.correo}}
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+</ion-content>

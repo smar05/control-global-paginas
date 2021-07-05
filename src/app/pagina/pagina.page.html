@@ -1,0 +1,132 @@
+<ion-toolbar color="dark">
+  <ion-buttons slot="start">
+    <ion-button (click)="back()">
+      <ion-icon name="caret-back-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Pagina</ion-title>
+</ion-toolbar>
+
+<ion-content color="medium">
+
+  <ng-container *ngIf="loading == true">
+    <img src="../../assets/imagenes/loading.gif" class="icon" style="border-radius: 50%;">
+  </ng-container>
+
+  <ng-container *ngIf="loading == false">
+    <h2 style="text-align: center;color: black;"><b>Logo</b></h2>
+
+    <ion-card (click)="logo()">
+      <img [src]="pagina.logo" *ngIf="pagina.logo" class="icon">
+      <img src="../../assets/imagenes/plus.svg" *ngIf="!pagina.logo" class="icon">
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header style="width: 100%;" color="warning">
+        <ion-icon class="icon" name="flag-outline"></ion-icon>
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating">Nombre del negocio</ion-label>
+        <ion-input [(ngModel)]="pagina.nombre"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-row>
+        <ion-card-header style="width: 100%;" color="success">
+          <ion-icon class="icon" name="logo-whatsapp"></ion-icon>
+        </ion-card-header>
+      </ion-row>
+      <ion-row>
+        <ion-card-content>
+          <ion-row>
+            <ion-col size="2">
+              <ion-icon class="icon" style="padding-top: 50%;height: 50%;" name="add-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="3">
+              <ion-item>
+                <ion-label position="floating">Ind</ion-label>
+                <ion-input type="number" [(ngModel)]="pagina.indicativo"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="5">
+              <ion-item>
+                <ion-label position="floating">Whatsapp</ion-label>
+                <ion-input type="number" [(ngModel)]="pagina.whatsapp"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-row>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header style="width: 100%;" color="primary">
+        <ion-icon class="icon" name="logo-facebook"></ion-icon>
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating">Facebook</ion-label>
+        <ion-input [(ngModel)]="pagina.facebook"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header style="width: 100%;background-color: #fa3ed4;">
+        <ion-icon class="icon" name="logo-instagram"></ion-icon>
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating">Instagram</ion-label>
+        <ion-input [(ngModel)]="pagina.instagram"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header style="width: 100%;" color="secondary">
+        <ion-icon class="icon" name="logo-twitter"></ion-icon>
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating">Twitter</ion-label>
+        <ion-input [(ngModel)]="pagina.twitter"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header style="width: 100%;" color="danger">
+        <ion-icon class="icon" name="mail-outline"></ion-icon>
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating">Correo electronico</ion-label>
+        <ion-input [(ngModel)]="pagina.correo"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header style="width: 100%;" color="dark">
+        <ion-icon class="icon" name="location-outline"></ion-icon>
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating">Direccion</ion-label>
+        <ion-input [(ngModel)]="pagina.direccion"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">URL Google maps</ion-label>
+        <ion-input [(ngModel)]="pagina.maps"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <h1 style="text-align: center;color: black;"><b>Informacion de la pagina</b></h1>
+
+    <ion-card>
+      <ion-card-header style="width: 100%;" color="danger">
+        <p style="text-align: center;"><b>¿Quienes somos?</b></p>
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating">¿Quienes somos?</ion-label>
+        <ion-textarea [(ngModel)]="pagina.nosotros"></ion-textarea>
+      </ion-item>
+    </ion-card>
+
+    <ion-button expand="full" (click)="save()" color="warning">Guardar</ion-button>
+  </ng-container>
+
+</ion-content>

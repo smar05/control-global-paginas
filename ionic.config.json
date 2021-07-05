@@ -1,0 +1,7 @@
+{
+  "name": "appMiTiVi",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

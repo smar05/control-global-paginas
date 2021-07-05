@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="bordes">
+    <br>
+    <br>
+
+    <img class="icon" src="../../assets/imagenes/users.svg">
+
+    <br>
+    <br>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Correo Electronico</ion-label>
+        <ion-input [(ngModel)]="email"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-row>
+        <ion-col size="11">
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input [(ngModel)]="password" *ngIf="verPassword==false"></ion-input>
+            <ion-input type="password" [(ngModel)]="password" *ngIf="verPassword==true"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon (click)="ver()" *ngIf="verPassword==false" style="height: 100%;width: 100%;" name="eye-outline">
+          </ion-icon>
+          <ion-icon (click)="ver()" *ngIf="verPassword==true" style="height: 100%;width: 100%;" name="eye-off-outline">
+          </ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <br>
+
+    <ion-button expand="full" (click)="ingresar()">Ingresar</ion-button>
+
+    <br>
+    <br>
+
+    <div class="ion-text-center">
+      <ion-label><b routerLink="/reset" style="color: cornflowerblue;">¿Olvidaste tu contraseña?</b></ion-label>
+      <br>
+      <br>
+      <ion-label routerLink="/register"><b>Crear cuenta</b></ion-label>
+    </div>
+  </div>
+
+</ion-content>
